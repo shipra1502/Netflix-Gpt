@@ -7,14 +7,13 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR, NETFLIX_BACKGROUND } from "../utils/constants";
 
 const Login = () => {
   const [signInForm, setsignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -50,11 +49,9 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/69952542?v=4",
+            photoURL: USER_AVATAR,
           })
-            .then(() => {
-              navigate("/");
-            })
+            .then(() => {})
             .catch((error) => {
               setErrorMessage(error.message);
             });
@@ -81,10 +78,9 @@ const Login = () => {
               uid: uid,
               displayName: displayName,
               email: email,
-              photoURL: user.photoURL,
+              photoURL: photoURL,
             })
           );
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -101,11 +97,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
-          className=""
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/25f808aa-cecb-4753-8541-9a79f40c18ae/web/AE-en-20251006-TRIFECTA-perspective_7264094a-f4b4-4b0a-8484-acaec98722c7_large.jpg"
-          alt="logo"
-        ></img>
+        <img className="" alt="logo" src={NETFLIX_BACKGROUND}></img>
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
