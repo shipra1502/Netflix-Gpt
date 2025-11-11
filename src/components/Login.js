@@ -55,7 +55,6 @@ const Login = () => {
             .catch((error) => {
               setErrorMessage(error.message);
             });
-          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -71,7 +70,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
           const { uid, displayName, email, photoURL } = auth.currentUser;
           dispatch(
             addUser({
