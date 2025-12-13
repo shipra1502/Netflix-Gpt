@@ -48,7 +48,7 @@ const Header = () => {
         navigate("/");
       }
     });
-    // Unsubscribe when component unmounts
+
     return () => unsubscribe();
   }, []);
   return (
@@ -69,7 +69,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="py-2 px-4 mx-4 my-2 text-white rounded-lg bg-purple-600 bg-opacity-50 hover:bg-opacity-30 transition z-50"
+            className="py-2 px-4 mx-4 my-2 text-white rounded-lg bg-purple-600 bg-opacity-50 hover:bg-opacity-30 transition z-20"
             onClick={handleGptSearchClick}
           >
             {langFlag ? " HomePage" : "GPT Search"}

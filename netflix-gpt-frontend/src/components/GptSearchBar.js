@@ -13,14 +13,33 @@ const GptSearchBar = () => {
   const [error, setError] = useState("");
 
   const searchMovieTMDB = async (movie) => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" +
-        movie +
-        "&include_adult=false&language=en-US&page=1",
-      API_OPTIONS
-    );
-    const jsonData = await data.json();
-    return jsonData.results;
+    try {
+      // if movie looks like a TMDb object, return it as-is
+      if (
+        movie &&
+        typeof movie === "object" &&
+        (movie.id || movie.title || movie.original_title)
+      ) {
+        return [movie]; // keep same shape as TMDb "results" array
+      }
+
+      const res = await fetch(
+        "https://api.themoviedb.org/3/search/movie?query=" +
+          movie +
+          "&include_adult=false&language=en-US&page=1",
+        API_OPTIONS
+      );
+
+      if (!res.ok) {
+        return [];
+      }
+
+      const json = await res.json();
+
+      return json.results ?? [];
+    } catch (err) {
+      return [];
+    }
   };
 
   const handleGptSearchClick = async () => {

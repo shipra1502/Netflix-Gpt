@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import MovieCard from "./MovieCard";
+import MovieDetailsModal from "./MovieDetailsModal";
+
 const MovieList = ({ title, movies }) => {
+  const [selectedMovie, setSelectedMovie] = useState(null);
   if (!movies || movies.length === 0) return null;
 
   return (
@@ -9,10 +12,21 @@ const MovieList = ({ title, movies }) => {
       <div className="flex overflow-x-scroll">
         <div className="flex">
           {movies?.map((movie) => {
-            return <MovieCard key={movie.id} posterPath={movie.poster_path} />;
+            return (
+              <MovieCard
+                key={movie.id}
+                posterPath={movie.poster_path}
+                onClick={() => setSelectedMovie(movie)}
+              />
+            );
           })}
         </div>
       </div>
+      {/* Modal appears only when movie selected */}
+      <MovieDetailsModal
+        movie={selectedMovie}
+        onClose={() => setSelectedMovie(null)}
+      />
     </div>
   );
 };

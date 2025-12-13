@@ -8,6 +8,7 @@ const gptSlice = createSlice({
     movieNames: null,
     movieResults: null,
     loading: false,
+    selectedMovie: null,
   },
   reducers: {
     toogleGptSearchView: (state, action) => {
@@ -21,6 +22,9 @@ const gptSlice = createSlice({
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
+    setSelectedMovie: (state, action) => {
+      state.selectedMovie = action.payload;
+    },
     clearGptMovieResults: (state) => {
       state.movieNames = null;
       state.movieResults = null;
@@ -32,6 +36,7 @@ export const {
   toogleGptSearchView,
   addGptMovieResults,
   setLoading,
+  setSelectedMovie,
   clearGptMovieResults,
 } = gptSlice.actions;
 export default gptSlice.reducer;
