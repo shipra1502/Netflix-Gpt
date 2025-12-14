@@ -45,6 +45,13 @@ const GptSearchBar = () => {
   const handleGptSearchClick = async () => {
     setError("");
     dispatch(setLoading(true));
+    // Clear old recommendations before new search
+    dispatch(
+      addGptMovieResults({
+        movieNames: [],
+        movieResults: [],
+      })
+    );
 
     try {
       const query = searchText.current.value;
@@ -101,6 +108,13 @@ const GptSearchBar = () => {
       throw new Error("Unexpected response from server");
     } catch (err) {
       setError(err.message || "Something went wrong");
+      // Clear any existing results when there's an error
+      dispatch(
+        addGptMovieResults({
+          movieNames: [],
+          movieResults: [],
+        })
+      );
     } finally {
       dispatch(setLoading(false));
     }
