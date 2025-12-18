@@ -1,6 +1,6 @@
-# 🎬 Netflix GPT — AI Powered Movie Search Platform
+# 🎬 Reels AI — AI Powered Movie Search Platform
 
-A Netflix-style streaming UI enhanced with GPT intelligence for smart movie discovery.  
+A Reels AI-style streaming UI enhanced with GPT intelligence for smart movie discovery.  
 Built with scalable architecture, secure API access, and production-grade best practices.
 
 ---
@@ -37,7 +37,7 @@ Built with scalable architecture, secure API access, and production-grade best p
 - Reusable components: **MovieCard**, **MovieList**
 - Images served using **TMDB image CDN** for performance
 
-### 🤖 NetflixGPT — AI Search
+### 🤖 Reels AI — AI Search
 
 - GPT-driven movie name suggestions
 - Multi-language prompt support
@@ -50,7 +50,7 @@ Built with scalable architecture, secure API access, and production-grade best p
 ## 🧠 Engineering Milestones
 
 - Project created with Create React App
-- Tailwind setup for Netflix-style UI
+- Tailwind setup for UI
 - Header, Login & Register pages
 - Redux store with: `userSlice`, `movieSlice`, `gptSlice`
 - Built **MainContainer** & **SecondaryContainer**
